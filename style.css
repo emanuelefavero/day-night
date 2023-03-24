@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* --sunrise: rgb(220,136,135); */
+  --heaven-sunrise: linear-gradient(
+    to top,
+    rgb(219, 95, 115),
+    rgb(218, 158, 134)
+  );
+  --heaven-noon: linear-gradient(to top, rgb(62, 166, 250), rgb(27, 99, 207));
+  --heaven-sunset: linear-gradient(
+    to top,
+    rgb(233, 68, 95),
+    rgb(215, 134, 218)
+  );
+  --heaven-midnight: rgb(9, 27, 49);
+
+  --sun-sunrise: #fff;
+  --sun-day: #fff;
+  --sun-sunset: #fff;
+
+  /* ANIMATION SPEED */
+  --animation-speed: 30s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+textarea,
+button,
+select,
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+}
+
+body {
+  overflow: hidden;
+}
+
+.sky-earth {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sky-earth:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--heaven-midnight);
+}
+
+.sun {
+  width: 100px;
+  height: 100px;
+  background: rgb(255, 196, 0);
+  border-radius: 100%;
+  position: relative;
+  bottom: 50%;
+  left: -50%;
+}
+
+.sun:before {
+  content: '';
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 253, 248, 0.808);
+  border-radius: 100%;
+  position: absolute;
+  filter: blur(7px);
+  transform: scale(1);
+}
+
+.sky {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.stars {
+  background: rgba(245, 245, 245, 0.829);
+  width: 2px;
+  height: 2px;
+  position: absolute;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px #fff;
+  /* transform: scale(.5) translate(20%, 10%); */
+}
+
+/* ANIMATIONS */
+.sun-animation {
+  animation: rotatingSun var(--animation-speed) infinite linear;
+}
+
+@keyframes rotatingSun {
+  0% {
+    /* SUNRISE */
+    bottom: -7%;
+    left: -50%;
+    background: rgb(255, 203, 143);
+  }
+
+  25% {
+    /* NOON */
+    bottom: 50%;
+    left: 0%;
+    background: rgb(255, 252, 225);
+  }
+
+  50% {
+    /* SUNSET */
+    bottom: -7%;
+    left: 50%;
+    background: rgb(255, 190, 179);
+  }
+
+  75% {
+    /* NIGHT */
+    bottom: -100%;
+    left: 100%;
+  }
+
+  100% {
+    /* NIGHT */
+    bottom: -100%;
+    left: 50%;
+  }
+}
+
+.sky-animation:before {
+  animation: sky-background-change var(--animation-speed) infinite ease-in-out;
+}
+
+@keyframes sky-background-change {
+  0% {
+    /* SUNRISE */
+    background: rgba(233, 94, 124, 0.767);
+  }
+
+  20% {
+    /* NOON */
+    background: rgb(98, 217, 238);
+  }
+
+  30% {
+    /* NOON */
+    background: rgb(98, 217, 238);
+  }
+
+  50% {
+    /* SUNSET */
+    background: rgba(235, 51, 82, 0.747);
+  }
+
+  68% {
+    /* NIGHT */
+    background: rgb(3, 18, 37);
+  }
+
+  75% {
+    background: rgb(3, 18, 37);
+  }
+
+  88% {
+    background: rgb(3, 18, 37);
+  }
+
+  100% {
+    /* SUNRISE */
+    background: rgba(233, 94, 124, 0.767);
+  }
+}
+
+.sky .stars {
+  animation: opacity-day var(--animation-speed) infinite ease-in-out;
+}
+
+@keyframes opacity-day {
+  0% {
+    /* SUNRISE */
+    opacity: 100;
+  }
+
+  50% {
+    /* NOON */
+    opacity: 0;
+  }
+
+  100% {
+    /* SUNSET */
+    opacity: 100;
+  }
+}
